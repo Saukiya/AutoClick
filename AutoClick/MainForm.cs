@@ -117,12 +117,7 @@ namespace AutoClick
                     if (!boo_move)
                     {
                         keybd_event((byte) Keys.W, 0, KEY_DOWN, 0);
-                        new Thread(() =>
-                        {
-                            keybd_event(0x10, 0, KEY_DOWN, 0);
-                            Thread.Sleep(3000);
-                            keybd_event(0x10, 0, KEY_UP, 0);
-                        }).Start();
+                        keybd_event(0x10, 0, KEY_DOWN, 0);
                         Log("自动奔跑已开启");
                         boo_move = !boo_move;
                         boo_click = !boo_move;
@@ -130,11 +125,13 @@ namespace AutoClick
                     else
                     {
                         keybd_event((byte) Keys.W, 0, KEY_UP, 0);
+                        keybd_event(0x10, 0, KEY_UP, 0);
                         Log("自动奔跑已关闭");
                         boo_move = !boo_move;
                     }
                 } else if (boo_move && args.KeyCode == Keys.W)
                 {
+                    keybd_event(0x10, 0, KEY_UP, 0);
                     Log("自动奔跑已关闭");
                     boo_move = !boo_move;
                 }
