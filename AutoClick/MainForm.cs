@@ -93,6 +93,11 @@ namespace AutoClick
                         mouse_event(MOUSE_L_DOWN, 0, 0, 0, 0);
                         mouse_event(MOUSE_L_UP, 0, 0, 0, 0);
                     }
+                    else
+                    {
+                        boo_click = false;
+                        Log("鼠标连点已关闭");
+                    }
                     Thread.Sleep(100);
                 }
             }).Start();
@@ -102,46 +107,37 @@ namespace AutoClick
             {
                 if (args.KeyCode == key_click && GetForegroundWindowTitle().Equals("原神"))
                 {
-                    boo_click = true;
-                    Log("鼠标连点已开启");
+                    
+                    boo_click = !boo_click;
+                    boo_move = !boo_click;
+                    Log("鼠标连点已" + (boo_click ? "开启" : "关闭"));
                 } else if (args.KeyCode == key_move && GetForegroundWindowTitle().Equals("原神"))
                 {
                     if (!boo_move)
                     {
+                        keybd_event((byte) Keys.W, 0, KEY_DOWN, 0);
                         new Thread(() =>
                         {
                             keybd_event(0x10, 0, KEY_DOWN, 0);
                             Thread.Sleep(3000);
                             keybd_event(0x10, 0, KEY_UP, 0);
                         }).Start();
-                        keybd_event((byte) Keys.W, 0, KEY_DOWN, 0);
                         Log("自动奔跑已开启");
-                        boo_move = true;
+                        boo_move = !boo_move;
+                        boo_click = !boo_move;
                     }
                     else
                     {
                         keybd_event((byte) Keys.W, 0, KEY_UP, 0);
                         Log("自动奔跑已关闭");
-                        boo_move = false;
+                        boo_move = !boo_move;
                     }
-                } else if (args.KeyCode == Keys.W && boo_move)
+                } else if (boo_move && args.KeyCode == Keys.W)
                 {
                     Log("自动奔跑已关闭");
-                    boo_move = false;
+                    boo_move = !boo_move;
                 }
 
-            };
-            keyboardHook.KeyUpEvent += (sender, args) =>
-            {
-                if (boo_click && args.KeyCode == key_click)
-                {
-                    boo_click = false;
-                    Log("鼠标连点已关闭");
-                }else if (args.KeyCode == Keys.W && boo_move && GetForegroundWindowTitle().Equals("原神"))
-                {
-                    boo_move = false;
-                    keybd_event((byte) Keys.W, 0, KEY_DOWN, 0);
-                }
             };
             keyboardHook.Start();
         }
