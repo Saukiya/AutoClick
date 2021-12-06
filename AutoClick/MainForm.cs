@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -137,9 +138,12 @@ namespace AutoClick
                     Log("自动奔跑已关闭");
                     boo_move = !boo_move;
                 }
-
             };
             keyboardHook.Start();
+            WindowsPrincipal windowsPrincipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            if (!windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator)) {
+                MessageBox.Show("如果原神为管理员身份启动时，该程序也要以管理员身份启动！");
+            }
         }
 
         public static void Log(string log)
