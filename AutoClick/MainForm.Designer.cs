@@ -1,4 +1,7 @@
-﻿namespace AutoClick
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace AutoClick
 {
   partial class MainForm
   {
@@ -27,9 +30,9 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.btn_click = new System.Windows.Forms.Button();
+            this.btn_pickup = new System.Windows.Forms.Button();
             this.btn_move = new System.Windows.Forms.Button();
             this.Logger = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -40,12 +43,25 @@
             this.btn_click.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_click.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.btn_click.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_click.Location = new System.Drawing.Point(140, 20);
+            this.btn_click.Location = new System.Drawing.Point(230, 10);
             this.btn_click.Name = "btn_click";
             this.btn_click.Size = new System.Drawing.Size(100, 30);
             this.btn_click.TabIndex = 0;
             this.btn_click.Text = "鼠标连点";
             this.btn_click.UseVisualStyleBackColor = false;
+            // 
+            // btn_pickup
+            // 
+            this.btn_pickup.BackColor = System.Drawing.SystemColors.Desktop;
+            this.btn_pickup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_pickup.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
+            this.btn_pickup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_pickup.Location = new System.Drawing.Point(120, 10);
+            this.btn_pickup.Name = "btn_pickup";
+            this.btn_pickup.Size = new System.Drawing.Size(100, 30);
+            this.btn_pickup.TabIndex = 0;
+            this.btn_pickup.Text = "自动拾取";
+            this.btn_pickup.UseVisualStyleBackColor = false;
             // 
             // btn_move
             // 
@@ -53,7 +69,7 @@
             this.btn_move.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_move.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.btn_move.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_move.Location = new System.Drawing.Point(20, 20);
+            this.btn_move.Location = new System.Drawing.Point(10, 10);
             this.btn_move.Name = "btn_move";
             this.btn_move.Size = new System.Drawing.Size(100, 30);
             this.btn_move.TabIndex = 0;
@@ -66,9 +82,9 @@
             this.Logger.Cursor = System.Windows.Forms.Cursors.Cross;
             this.Logger.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (134)));
             this.Logger.ForeColor = System.Drawing.SystemColors.Control;
-            this.Logger.Location = new System.Drawing.Point(20, 70);
+            this.Logger.Location = new System.Drawing.Point(10, 50);
             this.Logger.Name = "Logger";
-            this.Logger.Size = new System.Drawing.Size(220, 30);
+            this.Logger.Size = new System.Drawing.Size(320, 30);
             this.Logger.TabIndex = 2;
             this.Logger.Text = "使用热键连点鼠标";
             this.Logger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -78,9 +94,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(264, 121);
+            this.ClientSize = new System.Drawing.Size(340, 90);
             this.Controls.Add(this.Logger);
             this.Controls.Add(this.btn_move);
+            this.Controls.Add(this.btn_pickup);
             this.Controls.Add(this.btn_click);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -91,11 +108,9 @@
         }
 
         private System.Windows.Forms.Button btn_click;
-
         private System.Windows.Forms.Button btn_move;
-
+        private System.Windows.Forms.Button btn_pickup;
         private System.Windows.Forms.Label Logger;
-
 
         #endregion
   }
